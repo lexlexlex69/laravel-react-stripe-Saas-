@@ -1,0 +1,39 @@
+install laravel breeze - check documentation
+run laravel and vite
+
+activate darkmode theme by adding ff code in tailwind.config.js(export default object):
+  darkMode: 'class',
+utilize darkmode by adding a 'class="dark"' in app.blade.php
+
+check laravel if breeze is working
+
+create model and migration 'php artisan make:model Name -m'
+
+for column with default value $table->boolean('status')->default(true)
+
+ambot lng jd para asa ni pero use casts:array para sa data nga json(review UsedFeature model)
+
+use belongsTo(Model::class) method for relations
+
+review (DatabaseSeeder.php) for data seeding
+
+make Observer for database insert, this will automatically adds values to column when inserting rows.
+  php artisan make:observer NameObserver
+  review (UserObserver.php)
+  utilize the observer by adding this to your model '#[ObservedBy(UserObserver::class)]'
+
+php artisan migrate:fresh --seed // will drop the current db and apply seed
+
+php artisan tinker // can be use to access db data
+
+nagcreate og constructor sa Feature1Controller, idk why hehe
+
+for security purposes, use Resource, 'php artisan make:resource NameResource'
+  review (FeatureResource.php)
+  add public static $wrap = false // to unwrap the json output
+
+nc e review and Feature1Controller.php (try gamit ang request)
+
+this feature. Go{""}
+
+review components/Feature.jsx
