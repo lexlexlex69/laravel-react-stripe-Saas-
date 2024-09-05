@@ -1,11 +1,13 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function Feature({ feature, answer, children }) {
     const { auth } = usePage().props;
 
-    const availableCredits = auth.user.availableCredits;
-
+    const availableCredits = auth.user.available_credits;
+    console.log(auth.user);
+    console.log(feature);
+    console.log(availableCredits);
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -31,7 +33,7 @@ export default function Feature({ feature, answer, children }) {
                                     <h1>LOCK</h1>
                                     <div>
                                         You don't have sufficient credits for
-                                        this feature. Go{""}
+                                        this feature. Go{" "}
                                         <Link href="/" className="underline">
                                             Buy more credits.
                                         </Link>

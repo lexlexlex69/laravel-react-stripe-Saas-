@@ -34,6 +34,24 @@ for security purposes, use Resource, 'php artisan make:resource NameResource'
 
 nc e review and Feature1Controller.php (try gamit ang request)
 
-this feature. Go{""}
+this feature. Go{""} //for space ra diay ni ahahaha
 
 review components/Feature.jsx
+
+add routes 
+  Route::get('/feature1', [Feature1Controller::class, 'index'])->name('feature1.index');
+    Route::post('/feature1/calculate', [Feature1Controller::class, 'calculate'])->name('feature1.calculate');
+
+return Inertia::render('name sa jsx') or return intertia('name sa jsx', ['key' => value]) ang jsx is directly from resources/js/pages **note: same rani cla og functionality
+
+ang pattern for displaying pages is the ff:
+  1. hanapon sa routes ang link nga pasabot sa routes like href
+  2. awon ang function nga nka specify ato nga routes
+  3. function can return pages based sa folder like Feature1/index, and also pwede niya pakapinan og murag props 
+  4. pwede reservan og props ang page nga gikan sa function like sa #3, using katong session()
+
+study useForm destructures
+
+for images like icons, store it in public folder to access directly
+
+see what's inside the $user->

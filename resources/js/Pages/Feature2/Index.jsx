@@ -14,7 +14,7 @@ export default function Index({ feature, answer }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("feature1.calculate"), {
+        post(route("feature2.calculate"), {
             onSuccess() {
                 reset();
             },
