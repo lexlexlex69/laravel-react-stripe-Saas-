@@ -1,0 +1,22 @@
+install stripe sdk
+  composer require stripe/stripe-php
+
+  add 'csrf_token' => csrf_token(), inside HandleInertiaRequest.php for usePage().props to access csrf_token 
+
+  go to flowbite and copy tailwind css templates
+
+  review the PackagesPricingCard.jsx watch for <form> element
+
+  no need to modify the bootstrap/app.php diritso na sa VerifyCsrfToken.php to add exception:
+    protected $except = [
+        '/buy-credits/webhook',
+    ];
+
+to test stripe go to developers=>webhooks add create local llistener
+  download the cli
+  follow the cli commands using git bash
+    ./stripe login 
+      click accept
+    ./stripe.exe listen --forward-to localhost:8000/buy-credits/webhook
+      copy secret key
+      also copy the secret key from dashboard and paste STRIPE_SECRET_KEY=sk_test_51PyAwU02TPTBeh5LhGOWIrpR

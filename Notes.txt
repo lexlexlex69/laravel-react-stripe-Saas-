@@ -44,6 +44,8 @@ add routes
 
 return Inertia::render('name sa jsx') or return intertia('name sa jsx', ['key' => value]) ang jsx is directly from resources/js/pages **note: same rani cla og functionality
 
+add 'auth' => ['user' => $request->user(),], inside HandleInertiaRequest.php for usePage().props to access auth details
+
 ang pattern for displaying pages is the ff:
   1. hanapon sa routes ang link nga pasabot sa routes like href
   2. awon ang function nga nka specify ato nga routes
@@ -55,3 +57,4 @@ study useForm destructures
 for images like icons, store it in public folder to access directly
 
 see what's inside the $user->
+

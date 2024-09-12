@@ -54,7 +54,7 @@ export default function Authenticated({ user, header, children }) {
                             </span>
                             <Link
                                 className="text-white py-1 px-3 rounded border transition-colors hover:text-gray-800 hover:bg-white"
-                                href="/"
+                                href={route("credit.index")}
                             >
                                 Get More
                             </Link>
