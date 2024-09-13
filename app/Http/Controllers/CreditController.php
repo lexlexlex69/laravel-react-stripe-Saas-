@@ -9,6 +9,7 @@ use App\Models\Package;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CreditController extends Controller
 {
@@ -73,7 +74,7 @@ class CreditController extends Controller
     {
         //THIS IS FOR STRIPE CLI WEBHOOKS SECRET FOR TESTING YOUR ENDPOINT LOCALLY.
         $endpoint_secret = env('STRIPE_WEBHOOK_KEY');
-
+        // Log::info('test log');
         $payload = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
@@ -84,6 +85,7 @@ class CreditController extends Controller
                 $sig_header,
                 $endpoint_secret
             );
+            //Log::info('test try section log');
         } catch (\UnexpectedValueException $e) {
             //para sa invalid payload
             return response('', 400);
@@ -91,18 +93,21 @@ class CreditController extends Controller
             //para sa invalid signature
             return response('', 400);
         }
-
+        // Log::info('Stripe session object: {id}',['id' => $event->type]);
         switch ($event->type) {
-            case 'checkout.session.complete':
+            case 'checkout.session.completed':
                 $session = $event->data->object;
-
+                $testpayload = 'asdfsadf';
+                // Log::info('Stripe session object: {id}',['id' => $session]);
                 $transaction = Transaction::where('session_id', $session->id)->first();
+                //Log::info('tessttt {id}', (array) $transaction->credits);
                 //I WANT TO CONSOLE LOG THIS TO SEE IF THE $TRANSACTION HAS VALUE
                 if($transaction && $transaction->status === 'pending'){
                     $transaction->status = 'paid';
                     $transaction->save();
                     $transaction->user->available_credits += $transaction->credits;
-                }
+                    $transaction->user->save();
+                }break;
             default:
                 echo 'Received unknown event type' . $event->type;
         }
