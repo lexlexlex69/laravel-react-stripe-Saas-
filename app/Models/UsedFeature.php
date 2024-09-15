@@ -13,14 +13,12 @@ class UsedFeature extends Model
         'feature_id',
         'user_id',
         'credits',
+        'data',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'data' => 'array'
-        ];
-    }
+    protected $casts = [
+        'data' => 'array', // Corrected casting
+    ];
 
     public function user() {
         return $this->belongsTo(User::class);
